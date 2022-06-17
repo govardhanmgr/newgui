@@ -197,26 +197,26 @@ export default {
       fetch() {
  loginapi.getvalues().then(response=>{
 this.responsedata=response;
- console.log(response);
+// console.log(response);
  });
             
     },
-    submit(e) {
+    submit() {
        this.v$.$touch();
-       console.log(this.person.UserId)
+       //console.log(this.person.UserId)
        //this.message="this is haripriya"
       // console.log(this.v$.person.UserId);
-      console.log(this.meessage)
-      console.log(e)
-       console.log(this.v$.$invalid);
-  this.sendEmail(e)
+      //console.log(this.meessage)
+      //console.log(e)
+      // console.log(this.v$.$invalid);
+// this.sendEmail(e)
        if(!this.v$.$invalid){
  this.responsedata=loginapi.getvalues().then(response=>{
-console.log(response,"response data");
+//console.log(response,"response data");
 
 
 if(response.data){
-  console.log("if condition")
+  //console.log("if condition")
         for (var i = 0; i < response.data.length; i++) {
          // console.log("for condition")
     //console.log(response.data[i].email,response.data[i].password,response.data[i].entity)
@@ -224,7 +224,7 @@ if(response.data){
     if(response.status == 200){
      // this.errordata="";
     if(response.data[i].email == this.person.UserId && response.data[i].password == this.person.Password && response.data[i].entity == this.person.Entity){
-         console.log(response.data[i].id,"id")
+    //     console.log(response.data[i].id,"id")
         // console.log("launch page")
      
          this.$router.push('launchpage');
@@ -274,10 +274,10 @@ if(response.data){
       // })
        }
  },
-  sendEmail(e) {
-      console.log("send mail")
-    console.log(e)
-    console.log(this.meessage)
+//  sendEmail(e) {
+//      console.log("send mail")
+//    console.log(e)
+//    console.log(this.meessage)
       // try {
       //   emailjs.sendForm('service_6d3ojft', 'template_htjzpus', e.target, 'eqWuMXjFZYzAz8Iq6', {
       //     name: "Haripriya",
@@ -292,7 +292,7 @@ if(response.data){
       // this.name = ''
       // this.email = ''
       // this.message = ''
-    },
+  //  },
   }, 
 
 

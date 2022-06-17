@@ -2,9 +2,19 @@
 <template>
 <router-view>
 <h2> Active Employee Data </h2>
-    <table>
-        
+    <table >
+
+        <div id="customers">
         <tr>
+            <td> Employee Number</td>
+            <td> First Name </td>
+            <td> Last Name </td>
+            <td> Email </td>
+            <td> Contact Number </td>
+            <td> Role </td>
+            <td> Entity </td>
+        </tr>
+         <!-- <tr>
             <td> Employee Number</td>
             <td> First Name </td>
             <td> Last Name </td>
@@ -14,59 +24,25 @@
             <td> Client name </td>
             <td> Entity </td>
             <td> Action </td>
-        </tr>
+        </tr> -->
+  
+       <tr v-for="(employeedata,index) in responsedata" :key="index">
+        <td >{{employeedata.id}}</td>
+<td>{{employeedata.emplofirstName}}</td>
+<td>{{employeedata.lastName}}</td>
+<td>{{employeedata.email}}</td>
+<td>{{employeedata.phoneNumber}}</td>
+<td>{{employeedata.role}}</td>
+<td>{{employeedata.entity}}</td>
+
+       </tr>
+       <div>
+
+       </div>
+   
        
-    
-        <tr>
-            <td> 1000</td>
-            <td> Admin </td>
-            <td> </td>
-            <td> admin@averonsolutions.com</td>
-            <td> 678-987-2035</td>
-            <td> system admin</td>
-            <td> NA </td>
-            <td> averonsolutions </td>
-            <td> <button> view </button></td>
-            <td> <button> edit </button></td>
-        </tr>
-        <tr>
-            <td> 1006 </td>
-            <td> Lahari </td>
-            <td> Kolipara </td>
-            <td> koliparalahari27@gmail.com</td>
-            <td> 201-286-5343</td>
-            <td> business analyst </td>
-            <td> NA </td>
-            <td> SNAD </td>
-            <td> <button> view </button></td>
-            <td> <button> edit </button></td>
-        </tr>
-      
-        <tr>
-            <td> 1007 </td>
-            <td> Anusha </td>
-            <td> Raavi</td>
-            <td> raavi.anusha693@gmail.com</td>
-            <td> 213-453-4219</td>
-            <td> HR Manager </td>
-            <td> UPS </td>
-            <td>Averon solutions </td>
-            <td> <button> view </button></td>
-            <td> <button> edit </button></td>
-        </tr>
-       
-        <tr>
-            <td> 1008 </td>
-            <td> Narendra </td>
-            <td> Srinivasula</td>
-            <td> naren@averonsolutions.com </td>
-            <td> 9.19004e+11</td>
-            <td> Recruiting Manager</td>
-            <td> NA </td>
-            <td> averonsolutions </td>
-            <td> <button> view </button></td>
-            <td> <button> edit </button></td>
-        </tr>  
+        </div>
+        
        
     </table> 
 </router-view>
@@ -74,8 +50,77 @@
 </template>
 
 <script>
+
+import loginapi from '../services/loginapi'
     export default {
         // eslint-disable-next-line vue/multi-word-component-names
         name: 'activeemplydata',
+        data:function(){
+   return {
+ name:'jack',
+      characters:['me','you','anand','nikhil'],
+      employeedata:[
+        
+         { EmployeeNumber:'1000',firstname:'girish',lastname:'kollipara',email:'kgirish81349@gmail.com',contactnumber:'8763452719',role:'system admin',entity:'snad'},
+           { EmployeeNumber:'1001',firstname:'girish',lastname:'kollipara',email:'kgirish81349@gmail.com',contactnumber:'8763452719',role:'system admin',entity:'snad'},
+            { EmployeeNumber:'1002',firstname:'girish',lastname:'kollipara',email:'kgirish81349@gmail.com',contactnumber:'8763452719',role:'system admin',entity:'snad'},
+             { EmployeeNumber:'1003',firstname:'girish',lastname:'kollipara',email:'kgirish81349@gmail.com',contactnumber:'8763452719',role:'system admin',entity:'snad'},
+      ],
+      responsedata:[]
+      }
+      },
+        mounted() {
+
+  this.fetch();
+
+  },
+
+    created () {
+
+        this.fetch();
+
+      },
+      methods:{
+  fetch() {
+
+ loginapi.getvalues().then(response=>{
+
+this.responsedata=response.data;
+
+//  console.log(response);
+//  console.log("response" , this.responsedata)
+
+ });
+      }
+        
+        },
+    
     }
 </script>
+<style scoped>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+
+</style>

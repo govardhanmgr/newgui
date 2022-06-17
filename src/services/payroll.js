@@ -8,13 +8,13 @@ import API from './API'
 export default{
     
     getQuote(){
-        return API('http://localhost:3000/').get('/reg')
+        return API('http://localhost:3000/').get('/oayrollexpense')
     },
     createpost(data){
-        return API('http://localhost:3000/').post('/reg',data)
+        return API('http://localhost:3000/').post('/oayrollexpense',data)
     },
     getvalues(){
-        return API('http://localhost:3000/').get('/reg')
+        return API('http://localhost:3000/').get('/oayrollexpense')
     },
 
 }
